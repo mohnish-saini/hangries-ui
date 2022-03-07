@@ -9,17 +9,19 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
+import { Container, Paper } from "@material-ui/core";
 
-import pic from "../../images/promotion1.jpeg";
-
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     //maxWidth: 345
   },
   media: {
-    //height: 140
-  }
-});
+    //height: 340
+  },
+  paper: {
+    padding: theme.spacing(3),
+  },
+}));
 
 
 function Home(props) {
@@ -27,54 +29,77 @@ function Home(props) {
   const classes = useStyles();
 
   return <div>
-  <Grid container>
-  <Grid lg={4} md={4} xs={4}>
-  
 
-  <Card className={classes.root}>
-    <CardActionArea>
-      <CardMedia
-      component="img"
-        className={classes.media}
-        image={process.env.PUBLIC_URL+"/images/promotion1.jpeg"}
-        title="Contemplative Reptile"
-      />
-      
-    </CardActionArea>
-   
-  </Card>
-  </Grid>
-  <Grid lg={4} md={4} xs={4}>
-  <Card className={classes.root}>
-    <CardActionArea>
-      <CardMedia
-         component="img"
-         className={classes.media}
-         image={process.env.PUBLIC_URL+"/images/promotion2.jpeg"}
-         title="Contemplative Reptile"
-      />
-      
-    </CardActionArea>
-    
-  </Card>
-  </Grid>
+    <Container maxWidth="lg">
+      <Paper className={classes.paper}>
+        <Grid container >
 
-  <Grid lg={4} md={4} xs={4}>
-  <Card className={classes.root}>
-    <CardActionArea>
-      <CardMedia
-        component="img"
-        className={classes.media}
-        image={process.env.PUBLIC_URL+"/images/promotion3.jpeg"}
-        title="Contemplative Reptile"
-      />
-      
-    </CardActionArea>
-    
-  </Card>
-  </Grid>
-</Grid>
-</div>;
+          <Grid lg={12} md={12} xs={12} >
+            <Card className={classes.root}>
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  className={classes.media}
+                  image={process.env.PUBLIC_URL + "/images/BeFunky-design.jpg"}
+                  title=""
+                />
+
+              </CardActionArea>
+
+            </Card>
+          </Grid>
+
+          
+          <Grid lg={12} md={12} xs={12}><br/></Grid>
+          <Grid lg={4} md={4} xs={4} >
+
+
+            <Card className={classes.root}>
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  className={classes.media}
+                  image={process.env.PUBLIC_URL + "/images/promotion1.jpeg"}
+                  title=""
+                />
+
+              </CardActionArea>
+
+            </Card>
+          </Grid>
+          <Grid lg={4} md={4} xs={4} >
+            <Card className={classes.root}>
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  className={classes.media}
+                  image={process.env.PUBLIC_URL + "/images/promotion2.jpeg"}
+                  title=""
+                />
+
+              </CardActionArea>
+
+            </Card>
+          </Grid>
+
+          <Grid lg={4} md={4} xs={4}>
+            <Card className={classes.root}>
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  className={classes.media}
+                  image={process.env.PUBLIC_URL + "/images/promotion3.jpeg"}
+                  title=""
+                />
+
+              </CardActionArea>
+
+            </Card>
+          </Grid>
+        </Grid>
+      </Paper>
+    </Container>
+  </div>;
 }
 
 export default Home;
