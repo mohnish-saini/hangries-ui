@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     //flexGrow: 1,
+    color: "#000000"
   },
   
 }));
@@ -40,20 +41,23 @@ const TopBar = ({ className, onMobileNavOpen }) => {
     <AppBar
       //className={clsx(classes.root, className)}
       //elevation={0}
-      //style={{ background: "#c02d1a" }}
+      
+      style={{ background: "#ffffff" }}
     >
       <Toolbar>
         {/*<RouterLink to="/">
           <Logo />
         </RouterLink>*/}
 
-          <Button color="inherit" component={RouterLink} to={"/home"}><Typography variant="h6" className={classes.title}>Home</Typography></Button>
+         
+        <Box flexGrow={1} />
+
+        <Button color="inherit" component={RouterLink} to={"/home"}><Typography variant="h6" className={classes.title}>Home</Typography></Button>
           <Button color="inherit" component={RouterLink} to={"/menu"}><Typography variant="h6" className={classes.title} >Menu</Typography></Button>
           <Button color="inherit" component={RouterLink} to={"/orderOnline"}><Typography variant="h6" className={classes.title}>Order Online</Typography></Button>
           <Button color="inherit" component={RouterLink} to={"/reservation"}><Typography variant="h6" className={classes.title}>Reservation</Typography></Button>
           <Button color="inherit" component={RouterLink} to={"/gallery"}><Typography variant="h6" className={classes.title}>Gallery</Typography></Button>
      
-        <Box flexGrow={1} />
         <Hidden mdDown>
           <IconButton>
             {/*}
@@ -66,7 +70,7 @@ const TopBar = ({ className, onMobileNavOpen }) => {
             </Badge> */}
           </IconButton>
           <IconButton>
-            <InputIcon />
+            {/*<InputIcon />*/}
           </IconButton>
         </Hidden>
         <Hidden lgUp>

@@ -30,7 +30,7 @@ function Home(props) {
 
   return <div>
 
-    <Container maxWidth="lg">
+    
       <Paper className={classes.paper}>
         <Grid container >
 
@@ -98,7 +98,7 @@ function Home(props) {
           </Grid>
         </Grid>
       </Paper>
-    </Container>
+    
   </div>;
 }
 
