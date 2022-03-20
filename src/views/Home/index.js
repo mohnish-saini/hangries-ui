@@ -23,18 +23,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 function Home(props) {
-
   const classes = useStyles();
 
-  return <div>
-
-    
+  return (
+    <div>
       <Paper className={classes.paper}>
-        <Grid container >
-
-          <Grid lg={12} md={12} xs={12} >
+        <Grid container>
+          <Grid lg={12} md={12} xs={12}>
             <Card className={classes.root}>
               <CardActionArea>
                 <CardMedia
@@ -43,63 +39,13 @@ function Home(props) {
                   image={process.env.PUBLIC_URL + "/images/BeFunky-design.jpg"}
                   title=""
                 />
-
               </CardActionArea>
-
-            </Card>
-          </Grid>
-
-          
-          <Grid lg={12} md={12} xs={12}><br/></Grid>
-          <Grid lg={4} md={4} xs={4} >
-
-
-            <Card className={classes.root}>
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  className={classes.media}
-                  image={process.env.PUBLIC_URL + "/images/promotion1.jpeg"}
-                  title=""
-                />
-
-              </CardActionArea>
-
-            </Card>
-          </Grid>
-          <Grid lg={4} md={4} xs={4} >
-            <Card className={classes.root}>
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  className={classes.media}
-                  image={process.env.PUBLIC_URL + "/images/promotion2.jpeg"}
-                  title=""
-                />
-
-              </CardActionArea>
-
-            </Card>
-          </Grid>
-
-          <Grid lg={4} md={4} xs={4}>
-            <Card className={classes.root}>
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  className={classes.media}
-                  image={process.env.PUBLIC_URL + "/images/promotion3.jpeg"}
-                  title=""
-                />
-
-              </CardActionArea>
-
             </Card>
           </Grid>
         </Grid>
       </Paper>
-    
-  </div>;
+    </div>
+  );
 }
 
 export default Home;
