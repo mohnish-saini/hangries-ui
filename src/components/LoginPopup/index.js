@@ -5,16 +5,53 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
+import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import Grid from "@material-ui/core/Grid";
 import { Search } from "@material-ui/icons";
-import { Box, IconButton } from "@material-ui/core";
+import { Box, IconButton, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 
 import firebase from "../../firebase/firebase";
+import CloseIcon from "@material-ui/icons/Close";
+
+const useStyles = makeStyles((theme) => ({}));
+
+const styles = (theme) => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(2),
+  },
+  closeButton: {
+    position: "absolute",
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: theme.palette.grey[500],
+  },
+});
+
+const DialogTitle = withStyles(styles)((props) => {
+  const { children, classes, onClose, ...other } = props;
+  return (
+    <MuiDialogTitle disableTypography className={classes.root} {...other}>
+      <Typography variant="h6">{children}</Typography>
+      {onClose ? (
+        <IconButton
+          aria-label="close"
+          className={classes.closeButton}
+          onClick={onClose}
+        >
+          <CloseIcon />
+        </IconButton>
+      ) : null}
+    </MuiDialogTitle>
+  );
+});
 
 export default function LoginPopup(props) {
   const { open, onClose } = props;
   //const [open, setOpen] = React.useState(false);
+  const classes = useStyles();
 
   const [mobileNumber, setMobileNumber] = useState("");
   const [otp, setOtp] = useState("");
@@ -135,8 +172,11 @@ export default function LoginPopup(props) {
         aria-labelledby="form-dialog-title"
         maxWidth="false"
       >
-        <DialogTitle id="form-dialog-title">Login / SignUp</DialogTitle>
-        <DialogContent>
+        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+          Login / SignUp
+        </DialogTitle>
+
+        <DialogContent dividers>
           <DialogContentText>
             Please enter the 10 digit mobile number.
           </DialogContentText>
