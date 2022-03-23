@@ -25,7 +25,7 @@ import {
   TextField,
 } from "@material-ui/core";
 
-const drawerWidth = 24;
+const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({}));
 
@@ -137,7 +137,9 @@ export default function CustomerDetails(props) {
             />
           </ListItem>
         </List>
-        <Button color="primary">Save</Button>
+        <Button variant="contained" color="secondary">
+          Save
+        </Button>
       </SwipeableDrawer>
     </div>
   );
