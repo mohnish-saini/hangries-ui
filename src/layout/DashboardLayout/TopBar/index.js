@@ -20,6 +20,22 @@ import InputIcon from "@material-ui/icons/Input";
 import Logo from "../../../components/Logo";
 import LoginPopup from "../../../components/LoginPopup";
 
+import Drawer from "@material-ui/core/Drawer";
+
+import CssBaseline from "@material-ui/core/CssBaseline";
+import List from "@material-ui/core/List";
+
+import Divider from "@material-ui/core/Divider";
+
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import InboxIcon from "@material-ui/icons/MoveToInbox";
+import MailIcon from "@material-ui/icons/Mail";
+import CustomerDetails from "../../../components/CustomerDetails";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -38,7 +54,11 @@ const TopBar = ({ className, onMobileNavOpen }) => {
   const [notifications] = useState([]);
 
   const [openLoginPopup, setOpenLoginPopup] = useState(false);
-  const [loginCode, setIsLoginCode] = useState(0);
+
+  const [openCustomerDetailsPopup, setOpenCustomerDetailsPopup] =
+    useState(false);
+  const [loginCode, setLoginCode] = useState(0);
+  const [mobileNumber, setMobileNumber] = useState("");
 
   const [loginDetails, setLoginDetails] = useState({
     loginCode: 0,
@@ -54,12 +74,17 @@ const TopBar = ({ className, onMobileNavOpen }) => {
 
     //alert(loginDetails.loginCode);
     //alert(loginDetails.mobileNumber);
-    //setIsLoginCode(code);
+    //setLoginCode(code);
 
-    setLoginDetails({
-      loginCode: loginDetails.loginCode,
-      mobileNumber: loginDetails.mobileNumber,
-    });
+    setLoginDetails(loginDetails);
+  };
+
+  const handleCustomerDetailsPopupOpen = () => {
+    setOpenCustomerDetailsPopup(true);
+  };
+
+  const handleCustomerDetailsPopupClose = () => {
+    setOpenCustomerDetailsPopup(false);
   };
 
   return (
@@ -116,13 +141,11 @@ const TopBar = ({ className, onMobileNavOpen }) => {
             </IconButton>
           )}
           {loginDetails.loginCode === 1 && (
-            <IconButton color="inherit">
-              <Chip
-                label={loginDetails.mobileNumber}
-                component="a"
-                href="#chip"
-                clickable
-              />
+            <IconButton
+              color="inherit"
+              onClick={handleCustomerDetailsPopupOpen}
+            >
+              <Chip label={loginDetails.mobileNumber} component="a" clickable />
             </IconButton>
           )}
           <Hidden mdDown>
@@ -149,6 +172,10 @@ const TopBar = ({ className, onMobileNavOpen }) => {
         open={openLoginPopup}
         onClose={handleLoginPopupClose}
       ></LoginPopup>
+      <CustomerDetails
+        open={openCustomerDetailsPopup}
+        onClose={handleCustomerDetailsPopupClose}
+      ></CustomerDetails>{" "}
     </>
   );
 };

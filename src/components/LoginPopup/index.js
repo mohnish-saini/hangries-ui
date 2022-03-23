@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -13,16 +13,17 @@ import { Box, IconButton } from "@material-ui/core";
 import firebase from "../../firebase/firebase";
 
 export default function LoginPopup(props) {
+  const { open, onClose } = props;
   //const [open, setOpen] = React.useState(false);
 
   const [mobileNumber, setMobileNumber] = useState("");
   const [otp, setOtp] = useState("");
+  const [loginCode, setLoginCode] = useState(0);
+
   const [loginDetails, setLoginDetails] = useState({
     loginCode: 0,
     mobileNumber: -1,
   });
-
-  const { open, onClose } = props;
 
   const handleClose = () => {
     onClose(loginDetails);
@@ -31,6 +32,12 @@ export default function LoginPopup(props) {
   const handleMobileNumberSubmit = () => {
     console.log(mobileNumber);
   };
+
+  useEffect(() => {
+    if (loginDetails.loginCode === 1) {
+      handleClose();
+    }
+  }, [loginDetails]);
 
   const configureCaptcha = () => {
     window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
@@ -47,7 +54,7 @@ export default function LoginPopup(props) {
   };
 
   const onSignInSubmit = (e) => {
-    //setIsLoginCode(0);
+    //setLoginCode(0);
 
     setLoginDetails({
       loginCode: 0,
@@ -92,9 +99,9 @@ export default function LoginPopup(props) {
 
         setLoginDetails({
           loginCode: 1,
-          mobileNumber: user.mobileNumber,
+          mobileNumber: user.phoneNumber,
         });
-        handleClose();
+        //handleClose();
         // ...
       })
       .catch((error) => {
@@ -110,6 +117,14 @@ export default function LoginPopup(props) {
 
         //handleClose();
       });
+
+    // setLoginDetails({
+    //   loginCode: 1,
+    //   mobileNumber: "+6598775383",
+    // });
+
+    //setLoginCode(1);
+    //handleClose();
   };
 
   return (
@@ -118,7 +133,7 @@ export default function LoginPopup(props) {
         open={open}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
-        fullWidth
+        maxWidth="false"
       >
         <DialogTitle id="form-dialog-title">Login / SignUp</DialogTitle>
         <DialogContent>
@@ -138,6 +153,9 @@ export default function LoginPopup(props) {
               name="mobileNumber"
               onChange={(e) => setMobileNumber(e.target.value)}
               fullWidth
+              InputLabelProps={{
+                shrink: true,
+              }}
               // InputProps={{
               //   endAdornment: (
               //     <IconButton>
@@ -150,6 +168,7 @@ export default function LoginPopup(props) {
               Submit
             </Button>
           </Box>
+          <br />
           <Box component="div" display="flex">
             {" "}
             <TextField
@@ -162,6 +181,9 @@ export default function LoginPopup(props) {
               onChange={(e) => setOtp(e.target.value)}
               size="small"
               fullWidth
+              InputLabelProps={{
+                shrink: true,
+              }}
             />
             <Button
               color="primary"
